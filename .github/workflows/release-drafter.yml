@@ -1,6 +1,7 @@
 name: Release Drafter
 
 on:
+  workflow_call:
   push:
     # branches to consider in the event; optional, defaults to all
     branches:
@@ -8,11 +9,5 @@ on:
 
 jobs:
   update_release_draft:
-    runs-on: ubuntu-latest
-    if: github.repository_owner == 'jenkinsci'
-    steps:
-      # Drafts your next Release notes as Pull Requests are merged into "master"
-      - uses: release-drafter/release-drafter@v5
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: jenkinsci/gitlab-plugin/.github/workflows/release-drafter.yml@main
 
